@@ -11,8 +11,8 @@ namespace FiveWordFiveLetters
             bool invalidWord = false;
             List<char> usedCharacters = new List<char>();
             //string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\word_perfect.txt";
-            string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\word_imperfect.txt";
-            //string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\beta_data.txt";
+            //string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\word_imperfect.txt";
+            string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\beta_data.txt";
             //string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\alpha_data.txt";
             string[] words = File.ReadAllLines(file);
 
@@ -35,11 +35,14 @@ namespace FiveWordFiveLetters
                             invalidWord = true;
                             break;
 
-                        }
+                        }      
                     }
                     if (invalidWord == false)
                     {
-
+                        foreach(char character in word)
+                        {
+                            usedCharacters.Add(character);
+                        }
                         result++;
                     }
                 }
