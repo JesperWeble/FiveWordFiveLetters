@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Jeg har fået den til at finde en kombination af fem ord
+// Er i gang med at finde ud af at gentage det og finde alle kombinationer.
+// Kunne ikke helt finde hoved og hale i noget som helst, da jeg ikke havde sovet :(
+
+using System;
 using System.IO;
 
 namespace FiveWordFiveLetters
@@ -10,7 +14,6 @@ namespace FiveWordFiveLetters
             int result = 0;
             int comboResult = 0;
             bool invalidWord = false;
-            bool invalidCombo = false;
             List<char> usedCharacters = new List<char>();
             //string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\word_perfect.txt";
             //string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\word_imperfect.txt";
@@ -18,7 +21,7 @@ namespace FiveWordFiveLetters
             //string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\alpha_data.txt";
             string[] words = File.ReadAllLines(file);
 
-            // For every word in the file check if the number of characters is 5, then check each character in the word has more than one instance in the word then add to the result.
+
 
             foreach (string word in words)
             {
@@ -53,7 +56,6 @@ namespace FiveWordFiveLetters
 
 
             Console.WriteLine("Five Letter Words: " + result);
-            Console.WriteLine("Combinations: " + comboResult);
         }
     }
 }
