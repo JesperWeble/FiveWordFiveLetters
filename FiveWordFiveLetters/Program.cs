@@ -8,7 +8,9 @@ namespace FiveWordFiveLetters
         static void Main(string[] args)
         {
             int result = 0;
+            int comboResult = 0;
             bool invalidWord = false;
+            bool invalidCombo = false;
             List<char> usedCharacters = new List<char>();
             //string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\word_perfect.txt";
             //string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\word_imperfect.txt";
@@ -17,6 +19,7 @@ namespace FiveWordFiveLetters
             string[] words = File.ReadAllLines(file);
 
             // For every word in the file check if the number of characters is 5, then check each character in the word has more than one instance in the word then add to the result.
+
             foreach (string word in words)
             {
                 if (word.Length == 5)
@@ -50,6 +53,7 @@ namespace FiveWordFiveLetters
 
 
             Console.WriteLine("Five Letter Words: " + result);
+            Console.WriteLine("Combinations: " + comboResult);
         }
     }
 }
