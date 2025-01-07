@@ -15,47 +15,67 @@ namespace FiveWordFiveLetters
             int comboResult = 0;
             bool invalidWord = false;
             List<char> usedCharacters = new List<char>();
+            List<string> usedWords = new List<string>();
             //string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\word_perfect.txt";
             //string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\word_imperfect.txt";
             string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\beta_data.txt";
             //string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\alpha_data.txt";
             string[] words = File.ReadAllLines(file);
+            //HashSet<string> words = new HashSet<string>(File.ReadAllLines(file));
+            
 
 
-
-            foreach (string word in words)
+            for (int i = 0; i < 5; i++)
             {
-                if (word.Length == 5)
+                
+                foreach (string word in words)
                 {
-                    invalidWord = false;
-                    foreach (char character in word)
-                    {
-                        if (usedCharacters.Contains(character))
-                        {
-                            invalidWord = true;
-                            break;
-                        }
-                        
-                        if (word.Count(c => c == character) > 1)
-                        {
-                            invalidWord = true;
-                            break;
+                    //if (word != usedWords[i])
+                    //{
 
-                        }      
-                    }
-                    if (invalidWord == false)
-                    {
-                        foreach(char character in word)
+                        if (word.Length == 5)
                         {
-                            usedCharacters.Add(character);
+                            invalidWord = false;
+                            foreach (char character in word)
+                            {
+                                if (usedCharacters.Contains(character))
+                                {
+                                    invalidWord = true;
+                                    break;
+                                }
+
+                                if (word.Count(c => c == character) > 1)
+                                {
+                                    invalidWord = true;
+                                    break;
+
+                                }
+                            }
+                            Console.WriteLine(word + " = " + invalidWord);
+                            if (invalidWord == false)
+                            {
+                                Console.WriteLine("Added |");
+                                usedWords.Add("|");
+                                usedWords[i] = usedWords[i] + word + "|";
+                                foreach (char character in word)
+                                {
+                                    usedCharacters.Add(character);
+                                }
+                                result++;
+                            }
                         }
-                        result++;
-                    }
+
+                    //}
+                }
+                foreach (string word in usedWords)
+                {
+                    Console.WriteLine(word);
                 }
             }
 
 
             Console.WriteLine("Five Letter Words: " + result);
+            Console.WriteLine("Valid Combinations: " + comboResult);
         }
     }
 }
