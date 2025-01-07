@@ -14,7 +14,6 @@ namespace FiveWordFiveLetters
             if (result.Where(x => x == ' ').Count() == Program._wordCount)
             {
                 Program._result++;         
-                Console.WriteLine($"{words.Length} words");
                 return;
 
             }

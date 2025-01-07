@@ -1,6 +1,4 @@
-﻿// Jeg har fået den til at finde en kombination af fem ord
-// Er i gang med at finde ud af at gentage det og finde alle kombinationer.
-// Kunne ikke helt finde hoved og hale i noget som helst, da jeg ikke havde sovet :(
+﻿// Er lige blevet færdig med Recursive Method, og skal til at gå i gang med bit representation.
 
 using System;
 using System.IO;
@@ -9,9 +7,9 @@ namespace FiveWordFiveLetters
 {
     public class Program
     {
-        public const string _file = "words_alpha.txt";
+        public const string _file = "words_beta.txt";
         public const int _wordLength = 5;
-        public const int _wordCount = 5;
+        public const int _wordCount = 4;
 
         public static int _result = 0;
 
@@ -30,7 +28,7 @@ namespace FiveWordFiveLetters
             }
             var filteredWords = dictionary.Values.ToArray();
             Console.WriteLine(filteredWords.Length);
-            methods.RecursiveMethod(filteredWords, _wordCount, filteredWords.Length - 1);
+            methods.RecursiveMethod(filteredWords, filteredWords.Length - 1);
 
 
             //methods.FindWordsMethod();
