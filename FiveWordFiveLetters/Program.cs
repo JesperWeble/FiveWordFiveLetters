@@ -7,75 +7,35 @@ using System.IO;
 
 namespace FiveWordFiveLetters
 {
-    internal class Program
+    public class Program
     {
+        public const string _file = "words_alpha.txt";
+        public const int _wordLength = 5;
+        public const int _wordCount = 5;
+
+        public static int _result = 0;
+
+
         static void Main(string[] args)
         {
-            int result = 0;
-            int comboResult = 0;
-            bool invalidWord = false;
-            List<char> usedCharacters = new List<char>();
-            List<string> usedWords = new List<string>();
-            //string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\word_perfect.txt";
-            //string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\word_imperfect.txt";
-            string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\beta_data.txt";
-            //string file = @"C:\Users\HFGF\source\repos\FiveWordFiveLetters\FiveWordFiveLetters\alpha_data.txt";
-            string[] words = File.ReadAllLines(file);
-            //HashSet<string> words = new HashSet<string>(File.ReadAllLines(file));
-            
+            FindWordsMethods methods = new FindWordsMethods();
 
-
-            for (int i = 0; i < 5; i++)
+            string[] words = File.ReadAllLines(_file).Where(x => x.Length == _wordLength && x.Distinct().Count() == _wordLength).ToArray();
+            var dictionary = new Dictionary<string, string>();
+            foreach (string word in words)
             {
-                
-                foreach (string word in words)
-                {
-                    //if (word != usedWords[i])
-                    //{
-
-                        if (word.Length == 5)
-                        {
-                            invalidWord = false;
-                            foreach (char character in word)
-                            {
-                                if (usedCharacters.Contains(character))
-                                {
-                                    invalidWord = true;
-                                    break;
-                                }
-
-                                if (word.Count(c => c == character) > 1)
-                                {
-                                    invalidWord = true;
-                                    break;
-
-                                }
-                            }
-                            Console.WriteLine(word + " = " + invalidWord);
-                            if (invalidWord == false)
-                            {
-                                Console.WriteLine("Added |");
-                                usedWords.Add("|");
-                                usedWords[i] = usedWords[i] + word + "|";
-                                foreach (char character in word)
-                                {
-                                    usedCharacters.Add(character);
-                                }
-                                result++;
-                            }
-                        }
-
-                    //}
-                }
-                foreach (string word in usedWords)
-                {
-                    Console.WriteLine(word);
-                }
+                string sortedChar = new string(word.OrderBy(x => x).ToArray());
+                if (dictionary.ContainsKey(sortedChar)) continue;
+                dictionary.Add(sortedChar, word);
             }
+            var filteredWords = dictionary.Values.ToArray();
+            Console.WriteLine(filteredWords.Length);
+            methods.RecursiveMethod(filteredWords, _wordCount, filteredWords.Length - 1);
 
 
-            Console.WriteLine("Five Letter Words: " + result);
-            Console.WriteLine("Valid Combinations: " + comboResult);
+            //methods.FindWordsMethod();
+
+            Console.WriteLine("Valid Combinations: " + _result);
         }
     }
 }
