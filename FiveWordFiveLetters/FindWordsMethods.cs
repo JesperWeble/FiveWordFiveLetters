@@ -29,9 +29,15 @@ namespace FiveWordFiveLetters
 
         bool FilterForDistinctCharactersOnly(string filterFrom, string filter)
         {
-            foreach (var characters in filter)
+            //int bit = 0;
+            foreach (var character in filter)
             {
-                if (filterFrom.Contains(characters)) return false;
+                //bit |= 1 << ((int)character - 'a');
+                //if (bit == 0)
+                //{
+                    //return false;
+                //}
+                if (filterFrom.Contains(character)) return false;
             }
             return true;
         }
