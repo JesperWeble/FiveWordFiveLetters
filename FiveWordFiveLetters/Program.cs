@@ -8,7 +8,7 @@ namespace FiveWordFiveLetters
 {
     public class Program
     {
-        public const string _file = "words_alpha.txt";
+        public const string _file = "word_imperfect.txt";
         public const int _wordLength = 5;
         public const int _wordCount = 4;
         public static int _result = 0;

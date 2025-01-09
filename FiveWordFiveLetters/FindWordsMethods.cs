@@ -20,24 +20,25 @@ namespace FiveWordFiveLetters
             }
             for (int i = index; i >= 0; i--)
             {
-                Console.WriteLine(words[i] + "\n");
-                if (FilterForDistinctCharactersOnly(result, words[i]))
-                {
-                    Console.Write("| Gotcha!!");
-                    RecursiveMethod(words, i - 1, string.Join(" ", result, words[i]).TrimStart());
-                }
+
+                RecursiveMethod(words, i - 1, string.Join(" ", result, words[i]).TrimStart());
+                //if (FilterForDistinctCharactersOnly(result, words[i]))
+                //{
+                //    Console.Write("| Gotcha!!");
+                //    RecursiveMethod(words, i - 1, string.Join(" ", result, words[i]).TrimStart());
+                //}
             }
 
         }
 
-        static bool FilterForDistinctCharactersOnly(string filterFrom, string filter)
-        {
-            foreach (var character in filter)
-            {
-                if (filterFrom.Contains(character)) return false;
-            }
-            return true;
-        }
+        //static bool FilterForDistinctCharactersOnly(string filterFrom, string filter)
+        //{
+        //    foreach (var character in filter)
+        //    {
+        //        if (filterFrom.Contains(character)) return false;
+        //    }
+        //    return true;
+        //}
 
 
 
