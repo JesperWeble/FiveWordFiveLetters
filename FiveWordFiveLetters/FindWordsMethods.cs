@@ -9,34 +9,31 @@ namespace FiveWordFiveLetters
     public class FindWordsMethods
     {       
         
-        public void RecursiveMethod(string[] words, int index, string result = "")
+        public static void RecursiveMethod(string[] words, int index, string result = "")
         {
             if (result.Where(x => x == ' ').Count() == Program._wordCount)
             {
+                Console.WriteLine($"\n\n{result}\n\n");
                 Program._result++;         
                 return;
 
             }
             for (int i = index; i >= 0; i--)
             {
+                Console.WriteLine(words[i] + "\n");
                 if (FilterForDistinctCharactersOnly(result, words[i]))
                 {
+                    Console.Write("| Gotcha!!");
                     RecursiveMethod(words, i - 1, string.Join(" ", result, words[i]).TrimStart());
                 }
             }
 
         }
 
-        bool FilterForDistinctCharactersOnly(string filterFrom, string filter)
+        static bool FilterForDistinctCharactersOnly(string filterFrom, string filter)
         {
-            //int bit = 0;
             foreach (var character in filter)
             {
-                //bit |= 1 << ((int)character - 'a');
-                //if (bit == 0)
-                //{
-                    //return false;
-                //}
                 if (filterFrom.Contains(character)) return false;
             }
             return true;
