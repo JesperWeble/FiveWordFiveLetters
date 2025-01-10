@@ -8,11 +8,11 @@ namespace FiveWordFiveLetters
 {
     public class Program
     {
-        public const string _file = "word_imperfect.txt";
+        public const string _file = "words_alpha.txt";
         public const int _wordLength = 5;
         public const int _wordCount = 4;
         public static int _result = 0;
-        private static Dictionary<int, string> dictionary = new Dictionary<int, string>();
+        public static Dictionary<int, string> _dictionary = new Dictionary<int, string>();
 
 
         static void Main(string[] args)
@@ -21,14 +21,12 @@ namespace FiveWordFiveLetters
             string[] words = File.ReadAllLines(_file).Where(x => x.Length == _wordLength && x.Distinct().Count() == _wordLength).ToArray();
             foreach (string word in words)
             {
-                string sortedWord = new string(word.OrderBy(x => x).ToArray());
-                bit = BitRepresentation.getAsBinary(sortedWord);
-                if (dictionary.ContainsKey(bit)) continue;
-                dictionary.Add(bit, sortedWord);
+                //string sortedWord = new string(word.OrderBy(x => x).ToArray());
+                bit = BitRepresentation.getAsBinary(word);
+                if (_dictionary.ContainsKey(bit)) continue;
+                _dictionary.Add(bit, word);
             }
-            var filteredWords = dictionary.Values.ToArray();
-            Console.WriteLine(filteredWords.Length);
-            FindWordsMethods.RecursiveMethod(filteredWords, filteredWords.Length - 1);
+            FindWordsMethods.RecursiveMethod(_dictionary.Keys.ToArray(), _dictionary.Count - 1);
 
 
             //methods.FindWordsMethod();

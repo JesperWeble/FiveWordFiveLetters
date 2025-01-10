@@ -9,7 +9,7 @@ namespace FiveWordFiveLetters
     public class FindWordsMethods
     {       
         
-        public static void RecursiveMethod(string[] words, int index, string result = "")
+        public static void RecursiveMethod(int[] words, int index, string result = "", int mask = 0)
         {
             if (result.Where(x => x == ' ').Count() == Program._wordCount)
             {
@@ -20,25 +20,22 @@ namespace FiveWordFiveLetters
             }
             for (int i = index; i >= 0; i--)
             {
-
-                RecursiveMethod(words, i - 1, string.Join(" ", result, words[i]).TrimStart());
-                //if (FilterForDistinctCharactersOnly(result, words[i]))
-                //{
-                //    Console.Write("| Gotcha!!");
-                //    RecursiveMethod(words, i - 1, string.Join(" ", result, words[i]).TrimStart());
-                //}
+                if ((mask & words[i]) == 0 )
+                {
+                    RecursiveMethod(words, i - 1, string.Join(" ", result, Program._dictionary[words[i]]).TrimStart(), mask | words[i]);
+                }
             }
 
         }
 
-        //static bool FilterForDistinctCharactersOnly(string filterFrom, string filter)
-        //{
-        //    foreach (var character in filter)
-        //    {
-        //        if (filterFrom.Contains(character)) return false;
-        //    }
-        //    return true;
-        //}
+        static bool FilterForDistinctCharactersOnly(string filterFrom, string filter)
+        {
+            foreach (var character in filter)
+            {
+                if (filterFrom.Contains(character)) return false;
+            }
+            return true;
+        }
 
 
 
