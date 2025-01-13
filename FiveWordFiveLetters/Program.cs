@@ -1,5 +1,6 @@
 ﻿// Er lige blevet færdig med Recursive Method, og skal til at gå i gang med bit representation.
 
+using FiveWordLib;
 using System;
 using System.IO;
 
@@ -17,15 +18,8 @@ namespace FiveWordFiveLetters
 
         static void Main(string[] args)
         {
-            int bit = 0;
-            string[] words = File.ReadAllLines(_file).Where(x => x.Length == _wordLength && x.Distinct().Count() == _wordLength).ToArray();
-            foreach (string word in words)
-            {
-                //string sortedWord = new string(word.OrderBy(x => x).ToArray());
-                bit = BitRepresentation.getAsBinary(word);
-                if (_dictionary.ContainsKey(bit)) continue;
-                _dictionary.Add(bit, word);
-            }
+            
+            ReadFile.Read(_file, _wordLength);
             var watch = new System.Diagnostics.Stopwatch();
             watch.Start();
             FindWordsMethods.RecursiveMethod(_dictionary.Keys.ToArray(), _dictionary.Count - 1);
