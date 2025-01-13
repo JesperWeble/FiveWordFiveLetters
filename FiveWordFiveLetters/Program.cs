@@ -26,12 +26,14 @@ namespace FiveWordFiveLetters
                 if (_dictionary.ContainsKey(bit)) continue;
                 _dictionary.Add(bit, word);
             }
+            var watch = new System.Diagnostics.Stopwatch();
+            watch.Start();
             FindWordsMethods.RecursiveMethod(_dictionary.Keys.ToArray(), _dictionary.Count - 1);
-
+            watch.Stop();
 
             //methods.FindWordsMethod();
 
-            Console.WriteLine("Valid Combinations: " + _result);
+            Console.WriteLine($"Valid Combinations: {_result} in {watch.ElapsedMilliseconds}ms");
         }
     }
 }
