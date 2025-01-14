@@ -9,7 +9,7 @@ namespace FiveWordFiveLetters
 {
     public class Program
     {
-        public const string _file = "words_alpha.txt";
+        const string _file = "words_alpha.txt";
         public const int _wordLength = 5;
         public const int _wordCount = 4;
         public static int _result = 0;
@@ -19,15 +19,9 @@ namespace FiveWordFiveLetters
         static void Main(string[] args)
         {
             
-            ReadFile.Read(_file, _wordLength);
-            var watch = new System.Diagnostics.Stopwatch();
-            watch.Start();
-            FindWordsMethods.RecursiveMethod(_dictionary.Keys.ToArray(), _dictionary.Count - 1);
-            watch.Stop();
+            FindWords wordFinder = new FindWords();
+            wordFinder.Find(_file, _wordCount, _wordLength);
 
-            //methods.FindWordsMethod();
-
-            Console.WriteLine($"Valid Combinations: {_result} in {watch.ElapsedMilliseconds}ms");
         }
     }
 }
